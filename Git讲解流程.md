@@ -89,7 +89,7 @@ Linus 不到两周时间， C 写了一个分布式版本控制系统，1300 行
 
 ## 4. Git 命令讲解
 
-###1. 新建版本控制
+### 1. init clone 
 
 ```
 //	初始化 git
@@ -98,7 +98,7 @@ git init
 git clone 
 ```
 	
-###2. 配置 Git
+### 2. 配置 Git
 
 ```
 //	查看配置
@@ -114,14 +114,13 @@ git config --global user.email johndoe@example.com
 git config --global core.editor emacs			
 ```
 
-###3. add
+### 3. add
 
 从`工作区`选取一些代码快照，加入到`暂存区`，即将要`commit`的内容
 
 ```
 //	将 <path> 放到 暂存区
 git add <path>
-
 //	将 改动的跟踪文件 放到暂存区，但是不包括 新增的 
 git add -u stages 
 //	将 所有 放到暂存区
@@ -151,16 +150,86 @@ git add -i
 
 ```
 
-###4. commit
+### 4. commit
 
 将`暂存区`的代码快照`提交`到`本地仓库`
 
+```
+git commit
+//	直接将 工作区 的所有文件提交到`本地仓库`
+git commit -a
+//	提交暂存区到仓库区
+git commit -m "log"
+```
+#### 高级用法
+
+```
+//	修改提交历史
+git commit --amend
+//	若暂存区无快照，那么只是修改最后一次的提交log
+//	若暂存区有快照，那么快照融入最后一次提交，并修改log
+```
+
+### 5. remote
+
+远端，即远程服务器
+
+```
+git remote
+
+//	添加远程主机。
+git remote add <主机名> <服务器地址>
+
+//	查看某个远程主机信息
+git remote show <主机名>
+
+git remote rm <主机名>
+git remote rename <原主机名> <新主机名>
+```
+
+### 6. push
+
+将本地的分支信息推向远端
+
+```
+git push <主机名> <本地分支名>:<远程分支名>
+
+//	将本地的主干推到远程主机，并建立追踪关系
+git push -u origin master:master
+
+//	推送当前分支到追踪分支
+git push
+
+//	强制覆盖推送 **改写历史***
+git push -f
+
+```
+
+### 7. fetch
+
+将远程仓库的拉取到本地仓库
+
+```
+git fetch
+git fetch origin master	
+```
+
+### 8. 合并 merge 演合 rebase
+
+[LearnGit](http://pcottle.github.io/learnGitBranching/?NODEMO)
+
+### 9. branch 分支
 
 
 
-
+ssh https
 
 3. 分支 branch 
+
+
+$ git push origin :master
+# 等同于
+$ git push origin --delete master
 
 和 SVN 不同，
 
