@@ -287,6 +287,33 @@ git rebase --onto branchA branchB branchC
 rebase: 保证了提交点的有序。</br>
 merge: 更加详细了记录了开发路线。
 
+### 10. 后悔药 reset revert reflog
+
+**reset**
+
+类似 SVN 的revert，将当前分支提交重置回某个提交点。
+
+```
+git reset [commit]
+//	--soft --mixed --hard
+```
+
+**revert**
+
+对某一次提交做一次反向操作，并且提交创建一个新提交
+
+```
+git revert [commit]
+```
+
+**reflog**
+
+列出 HEAD 经历过的记录，神器~
+
+```
+git reflog
+```
+
 ### 9. branch 分支
 
 Git 分支不同于 SVN，不是对文件拷贝的副本，而是快照，使用起来更加轻量级。这使得开发中对分支的 new，merge，delete 变得非常廉价，更好的支持并发型开发。
