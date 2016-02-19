@@ -314,11 +314,14 @@ git revert [commit]
 git reflog
 ```
 
-### 9. branch 分支
+## Git 开发模型--GitFlow
+
+### 1. branch
 
 Git 分支不同于 SVN，不是对文件拷贝的副本，而是快照，使用起来更加轻量级。这使得开发中对分支的 new，merge，delete 变得非常廉价，更好的支持并发型开发。
 
 分支的查看
+
 ```
 //	列出所有本地分支
 git branch
@@ -329,7 +332,9 @@ git branch -r
 //	列出所有分支
 git branch -a
 ```
+
 分支的新建
+
 ```
 //	新建分支 branchName
 git branch [branchName]
@@ -351,47 +356,7 @@ git checkout [commit]
 //	将追踪的文件重置为上一次 commit 的内容
 git checkout <fileName>
 ```
-### GitFlow
 
-
-ssh https
-
-3. 分支 branch 
-
-
-$ git push origin :master
-# 等同于
-$ git push origin --delete master
-
-和 SVN 不同，
-
-
-1. 新建项目
-2. git config 不讲
-3. init add commit remote push pull fetch clone
-
-常用指令讲解：
-clone </br>
-init </br>
-add </br>
-commit </br>
-push </br>
-merge </br>
-rebase </br>
-reset </br>
-
-高级指令：
-rebase -i
-cherry-pick </br>
-reflog 
-
-### Git一些高级用法
-
-1. Oh My Zsh
-2. git reflog
-3. 
-
-
-### GitFlow
+### 2. GitFlow
 
 ![GitFlow](http://nvie.com/img/git-model@2x.png)
