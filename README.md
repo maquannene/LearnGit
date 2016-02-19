@@ -226,7 +226,7 @@ git fetch
 git fetch origin master	
 ```
 
-### 8. 合并 merge 演合 rebase
+### 9. 合并 merge 演合 rebase
 
 [LearnGit](http://pcottle.github.io/learnGitBranching/?NODEMO)
 
@@ -291,6 +291,7 @@ merge: 更加详细了记录了开发路线。
 
 Git 分支不同于 SVN，不是对文件拷贝的副本，而是快照，使用起来更加轻量级。这使得开发中对分支的 new，merge，delete 变得非常廉价，更好的支持并发型开发。
 
+分支的查看
 ```
 //	列出所有本地分支
 git branch
@@ -300,6 +301,31 @@ git branch -r
 
 //	列出所有分支
 git branch -a
+```
+分支的新建
+```
+//	新建分支 branchName
+git branch [branchName]
+
+//	新建分支 branchName 并且切换
+git checkout -b [branchName]
+
+//	从一个 commit 点新建一条分支 branchName
+git branch [branchName] [commit]
+```
+
+分支的切换 checkout 功能
+
+```
+//	切换分支
+git checkout [branchName]
+//	移动 head
+git checkout [commit]
+//	将追踪的文件重置为上一次 commit 的内容
+git checkout <fileName>
+```
+### GitFlow
+
 
 ssh https
 
