@@ -193,8 +193,10 @@ git remote rename <原主机名> <新主机名>
 
 ```
 git push <主机名> <本地分支名>:<远程分支名>
+```
 
-//	将本地的主干推到远程主机，并建立追踪关系
+```
+将本地的主干推到远程主机，并建立追踪关系
 git push -u origin master:master
 
 //	推送当前分支到追踪分支
@@ -205,7 +207,17 @@ git push -f
 
 ```
 
-### 7. fetch
+### 7. pull
+
+pull = fetch + merge
+
+merge 优先尝试 fast-forward 模式
+
+```
+git pull <远程主机名> <远程分支名>:<本地分支名>
+```
+
+### 8. fetch
 
 将远程仓库的拉取到本地仓库
 
@@ -218,9 +230,76 @@ git fetch origin master
 
 [LearnGit](http://pcottle.github.io/learnGitBranching/?NODEMO)
 
+把一个分支中的修改整合到另一个分支的办法有两种：`merge` 和 `rebase`
+
+#### 1. 合并 merge
+
+把制定分支 branchX 合并到当前分支，如果不进行 fast-forward 模式，就会产生新的提交点。</br>
+若有冲突发生时，新的提交点为解决冲突记录。
+
+```
+git merge origin branchX
+```
+
+合并前</br>
+![合并前](http://git.oschina.net/progit/figures/18333fig0327-tn.png)
+
+合并后</br>
+![合并后](http://git.oschina.net/progit/figures/18333fig0328-tn.png)
+
+**fast-forward 并模式**
+
+![fast-foward](http://nvie.com/img/merge-without-ff@2x.png)
+
+将一个提交点合并到当前分支，产生新的提交点
+
+```
+git cherry-pick [commit]
+```
+
+注意：永远不要 cherry-pick 已推送到远端的 commit，否则再次推送时会产生冲突。
+
+#### 2. 演合 rebase
+
+将当前分支和 branchX 产生分歧的 commit 点，重新提交在 branchX 之后
+
+```
+git rebase branchX
+```
+
+演合之前</br>
+![演合之前](http://git.oschina.net/progit/figures/18333fig0327-tn.png)
+
+演合之后</br>
+![演合之后](http://git.oschina.net/progit/figures/18333fig0329-tn.png)
+
+master 快速合并 </br>
+![快速合并](http://git.oschina.net/progit/figures/18333fig0330-tn.png)
+
+注意：永远不要对已经推送到远程仓库的分支进行演合，否则再次推送时会产生冲突。永远不要改变历史。
+
+```
+git rebase --onto branchA branchB branchC
+```
+
+#### merge 和 rebase 的取舍
+
+rebase: 保证了提交点的有序。</br>
+merge: 更加详细了记录了开发路线。
+
 ### 9. branch 分支
 
+Git 分支不同于 SVN，不是对文件拷贝的副本，而是快照，使用起来更加轻量级。这使得开发中对分支的 new，merge，delete 变得非常廉价，更好的支持并发型开发。
 
+```
+//	列出所有本地分支
+git branch
+
+//	列出所有远程分支
+git branch -r
+
+//	列出所有分支
+git branch -a
 
 ssh https
 
