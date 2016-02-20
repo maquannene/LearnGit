@@ -165,7 +165,9 @@ d:	不暂存和剩余的片
 q:	退出
 e:	手动编辑选择是否暂存
 s:	切片
+```
 
+```
 git add -i
 
 ```
@@ -184,11 +186,12 @@ git commit -m "log"
 #### 高级用法
 
 ```
-//	修改提交历史
+//	纠正最后历史
 git commit --amend
-//	若暂存区无快照，那么只是修改最后一次的提交log
-//	若暂存区有快照，那么快照融入最后一次提交，并修改log
+//	将 add 新的快照，追加最后到一次提交，并修改log
 ```
+
+**注意：**这样会更改历史
 
 ### 5. remote
 
@@ -230,16 +233,18 @@ git push -f
 ### 7. pull
 
 pull = fetch + merge
+pull --rebase = fetch + rebase
 
 merge 优先尝试 fast-forward 模式
 
 ```
 git pull <远程主机名> <远程分支名>:<本地分支名>
+git pull --rebase <远程主机名> <远程分支名>:<本地分支名> 
 ```
 
 ### 8. fetch
 
-将远程仓库的拉取到本地仓库
+将远程仓库新的提交的拉取到本地仓库
 
 ```
 git fetch
@@ -254,7 +259,7 @@ git fetch origin master
 
 #### 1. 合并 merge
 
-把制定分支 branchX 合并到当前分支，如果不进行 fast-forward 模式，就会产生新的提交点。</br>
+把指定分支 branchX 合并到当前分支，如果不进行 fast-forward 模式，就会产生新的提交点。</br>
 若有冲突发生时，新的提交点为解决冲突记录。
 
 ```
@@ -267,21 +272,13 @@ git merge origin branchX
 合并后</br>
 ![合并后](http://git.oschina.net/progit/figures/18333fig0328-tn.png)
 
-**fast-forward 并模式**
+**fast-forward 模式**
 
 ![fast-foward](http://nvie.com/img/merge-without-ff@2x.png)
 
-将一个提交点合并到当前分支，产生新的提交点
-
-```
-git cherry-pick [commit]
-```
-
-注意：永远不要 cherry-pick 已推送到远端的 commit，否则再次推送时会产生冲突。
-
 #### 2. 演合 rebase
 
-将当前分支和 branchX 产生分歧的 commit 点，重新提交在 branchX 之后
+将当前分支和 branchX 产生分歧的 commit 点，重新在 branchX 演一遍。
 
 ```
 git rebase branchX
@@ -293,10 +290,9 @@ git rebase branchX
 演合之后</br>
 ![演合之后](http://git.oschina.net/progit/figures/18333fig0329-tn.png)
 
-master 快速合并 </br>
-![快速合并](http://git.oschina.net/progit/figures/18333fig0330-tn.png)
-
 注意：永远不要对已经推送到远程仓库的分支进行演合，否则再次推送时会产生冲突。永远不要改变历史。
+
+神奇的演合：
 
 ```
 git rebase --onto branchA branchB branchC
@@ -304,7 +300,7 @@ git rebase --onto branchA branchB branchC
 
 #### merge 和 rebase 的取舍
 
-rebase: 保证了提交点的有序。</br>
+rebase: 保证了提交点的干净有序。</br>
 merge: 更加详细了记录了开发路线。
 
 ### 10. 后悔药 reset revert reflog
@@ -317,6 +313,8 @@ merge: 更加详细了记录了开发路线。
 git reset [commit]
 //	--soft --mixed --hard
 ```
+
+注意：不要对已经在远程服务器的 commit 进行 reset
 
 **revert**
 
@@ -338,7 +336,7 @@ git reflog
 
 ### 1. branch
 
-Git 分支不同于 SVN，不是对文件拷贝的副本，而是快照，使用起来更加轻量级。这使得开发中对分支的 new，merge，delete 变得非常廉价，更好的支持并发型开发。
+Git 分支不同于 SVN，不是对文件拷贝的副本，而是快照，使用起来非常轻量级。这使得开发中对分支的 new，merge，delete 变得非常廉价，更好的支持并发型开发。开分支，就是新建一个指针而已。
 
 分支的查看
 
@@ -380,3 +378,32 @@ git checkout <fileName>
 ### 2. GitFlow
 
 ![GitFlow](http://nvie.com/img/git-model@2x.png)
+
+## 辅助利器
+
+### 1. [Zsh](https://github.com/robbyrussell/oh-my-zsh)
+
+### 2. [GitDiff](https://github.com/johnno1962/GitDiff)
+
+## 扩展
+
+### 0. git config
+
+### 1. git rebase -i
+
+### 2. cherry-pick
+
+
+将一个提交点重新应用到当前分支，此时是一个新的提交号
+
+```
+git cherry-pick [commit]
+```
+
+注意：永远不要 cherry-pick 已推送到远端的 commit，否则再次推送时会产生冲突。
+
+### 3. .gitignore
+
+### 4. alias
+
+### 5. ssh
