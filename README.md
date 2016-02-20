@@ -8,7 +8,7 @@
 
 Linus 在 1991 年创建了开源的 Linux 之后靠着开发者共同维护。
 
-2002 ago ，contributors 把源代码文件通过 diff 的方式发给 Linus，Linus 和 维护者 `手工方式` merge。
+2002 以前 ，contributors 把源代码文件通过 diff 的方式发给 Linus，Linus 和 维护者 `手工方式` merge。
 
 维护者受不了了，Linus 选择了 BitKeeper，很喜欢 BitKeeper.
 
@@ -71,12 +71,12 @@ Linus 不到两周时间， C 写了一个分布式版本控制系统，1300 行
 
 ![四个区](http://www.ruanyifeng.com/blogimg/asset/2015/bg2015120901.png)
 
-**四区：**
+**两区两库：**
 
 * Workspace：工作区，就是你在电脑里能看到的目录 </br>
 * Index / Stage：暂存区，在暂存区的东西，才能 commit 到 Repository </br>
-* Repository：本地仓库区</br>
-* Remote：远程仓库
+* Repository：本地仓库</br>
+* Remote：远程仓库</br>
 
 **六指令：**
 
@@ -114,7 +114,7 @@ git config --global user.email johndoe@example.com
 git config --global core.editor emacs			
 ```
 
-### 3. add
+### 3. add, stage
 
 从`工作区`选取一些代码快照，加入到`暂存区`，即将要`commit`的内容
 
@@ -130,6 +130,26 @@ git add .
 * 提问：为什么会有`暂存区`这个概念？
 * 快照？
 
+#### 暂存 stash
+
+```
+//	暂存当前工作区的变动
+git stash
+//	暂存当前工作区的变动，并命名为<name>
+git save "name"
+
+//	取出暂存，并删除
+git stash pop
+
+//	取出暂存，不删除
+git stash apply "name"
+
+//	列出暂存列表
+git stash list
+
+//	删除暂存
+git stash drop "name"
+```
 
 #### 高级用法
 
