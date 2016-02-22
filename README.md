@@ -1,5 +1,28 @@
 # GIT
 -------
+
+<link rel="stylesheet" href="http://yandex.st/highlightjs/6.2/styles/googlecode.min.css">
+  
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="http://yandex.st/highlightjs/6.2/highlight.min.js"></script>
+  
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+ $(document).ready(function(){
+      $("h2,h3,h4,h5,h6").each(function(i,item){
+        var tag = $(item).get(0).localName;
+        $(item).attr("id","wow"+i);
+        $("#category").append('<a class="new'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></br>');
+        $(".newh2").css("margin-left",0);
+        $(".newh3").css("margin-left",20);
+        $(".newh4").css("margin-left",40);
+        $(".newh5").css("margin-left",60);
+        $(".newh6").css("margin-left",80);
+      });
+ });
+</script>
+<div id="category"></div>
+
 ## 1. Git 的身世
 
 作者：林纳斯·托瓦兹 （Linus Torvalds），Linux 的伟大的副产物
@@ -332,7 +355,7 @@ git revert [commit]
 git reflog
 ```
 
-## Git 开发模型--GitFlow
+## 5. Git 开发模型--GitFlow
 
 ### 1. branch
 
@@ -379,13 +402,13 @@ git checkout <fileName>
 
 ![GitFlow](http://nvie.com/img/git-model@2x.png)
 
-## 辅助利器
+## 6. 辅助利器
 
 ### 1. [Zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 ### 2. [GitDiff](https://github.com/johnno1962/GitDiff)
 
-## 扩展
+## 7. 扩展
 
 ### 0. git config
 
