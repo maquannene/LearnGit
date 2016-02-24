@@ -23,7 +23,7 @@
 </script>
 <div id="category"></div>
 
-## 1. Git 的身世
+## 1. Git 的产生
 
 作者：林纳斯·托瓦兹 （Linus Torvalds），Linux 的伟大的副产物
 
@@ -402,13 +402,32 @@ git checkout <fileName>
 
 ![GitFlow](http://nvie.com/img/git-model@2x.png)
 
-## 6. 辅助利器
+## 6. Git vs SVN
+
+### Git 优势
+
+			    | Git | SVN
+------------- | ------------- | ------------
+代码记录完整性 | 保留完整的提交记录 | 合并者会可能会改变提交记录
+查看历史版本 | checkout 或者 reset；</br>不依赖网络，速度飞快  | revert 或者 checkout；</br>甚至查看 log 都依赖于网络，速度慢
+本地化操作 | commit branch stash ... | 无
+功能并行开发 | 轻量级分支，创建、切换、合并迅速  | checkout 多个工程，多份 copy
+
+### SVN 优势
+
+			    | Git | SVN
+------------- | ------------- | ------------
+提交号 | 哈希值，基本无意义 | 增长式提交号，比较版本先后时使用
+权限控制 | 拥有整个代码仓库，随时查看提交记录 | 基于网络，可设置访问权限
+
+
+## 7. 辅助利器
 
 ### 1. [Zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 ### 2. [GitDiff](https://github.com/johnno1962/GitDiff)
 
-## 7. 扩展
+## 8. 扩展
 
 ### 0. git config
 
