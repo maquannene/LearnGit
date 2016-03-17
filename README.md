@@ -442,7 +442,8 @@ git checkout <fileName>
 git cherry-pick [commit]
 ```
 
-注意：永远不要 cherry-pick 已推送到远端的 commit，否则再次推送时会产生冲突。
+~~注意：永远不要 cherry-pick 已推送到远端的 commit，否则再次推送时会产生冲突。~~
+这句话是我错误的认知，删去。
 
 ### 3. .gitignore
 
