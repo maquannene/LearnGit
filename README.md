@@ -23,27 +23,27 @@
 </script>
 <div id="category"></div>
 
-### 一.Git 的产生
+## 一.Git 的产生
 
 作者：林纳斯·托瓦兹 （Linus Torvalds），Linux 的伟大的副产物
 
-![Linus](http://img0.imgtn.bdimg.com/it/u=2504201466,3383861494&fm=21&gp=0.jpg)
+<p style="text-align: center"><img src="http://img0.imgtn.bdimg.com/it/u=2504201466,3383861494&fm=21&gp=0.jpg" width = "350"/>
+</p>
 
 Linus 在 1991 年创建了开源的 Linux 之后靠着开发者共同维护。
 
 2002 以前 ，contributors 把源代码文件通过 diff 的方式发给 Linus，Linus 和 维护者 `手工方式` merge。
 
-<!--more-->
-
-维护者受不了了，Linus 选择了 BitKeeper，很喜欢 BitKeeper.
+维护者受不了了，Linus 选择了 BitKeeper，并且很喜欢 BitKeeper.
 
 理查德・斯托尔曼（Richard Stallman）自由软件倡导者，精神领袖，GNU计划创造者
 
-![xx](https://ss1.baidu.com/70cFfyinKgQFm2e88IuM_a/forum/pic/item/adaf2edda3cc7cd9684f8ce83e01213fb80e91a5.jpg)
+<p style="text-align: center"><img src="https://ss1.baidu.com/70cFfyinKgQFm2e88IuM_a/forum/pic/item/adaf2edda3cc7cd9684f8ce83e01213fb80e91a5.jpg" width = "200"/>
+</p>
 
 并且有人开始对 BitKeeper 逆向，破解，BitKeeper 收回了 Linus 的免费使用权。
 
-不得不要写一个自己的版本控制系统：
+Linus 不得不要写一个自己的版本控制系统：
 
 * 1.速度优势，有能力高效管理类似 Linux 内核一样的超大规模项目（速度和数据量）
 * 2.对非线性开发模式的强力支持（允许上千个并行开发的分支）
@@ -59,18 +59,20 @@ Linus 不到两周时间， C 写了一个分布式版本控制系统，1300 行
 外表：Source Tree, TortoiseGit 等等等 </br>
 内涵：[这里](http://pic002.cnblogs.com/img/1-2-3/201007/2010072023345292.png)
 
-</br>
-### 二. 集中式 与 分布式
+
+## 二. 集中式 与 分布式
 
 集中化的版本控制系统：SVN
 
-![集中化的版本控制系统](http://git.oschina.net/progit/figures/18333fig0102-tn.png)
+<p style="text-align: center"><img src="http://git.oschina.net/progit/figures/18333fig0102-tn.png" width = "350"/>
+</p>
 
 单一的集中管理的服务器，保存所有文件的修订版本，协同者通过客户端连到这台服务器，查看提交记录或者进行提交。checkout 的只是某个版本的代码，没有任何版本信息记录。
 
 分布式版本控制系统：Git
 
-![分布式版本控制系统](http://git.oschina.net/progit/figures/18333fig0103-tn.png)
+<p style="text-align: center"><img src="http://git.oschina.net/progit/figures/18333fig0103-tn.png" width = "350"/>
+</p>
 
 客户端并不只提取最新版本的文件快照，而是把代码仓库 `完整地镜像` 克隆（clone） 提取（fetch) 到本地
 
@@ -82,7 +84,7 @@ Linus 不到两周时间， C 写了一个分布式版本控制系统，1300 行
 * 3.高速度，所以 commit，checkout 变得飞快 </br>
 
 </br>
-### 三. Git 结构模型
+## 三. Git 结构模型
 
 为什么要理解 Git 结构模型？</br>
 
@@ -109,20 +111,20 @@ Linus 不到两周时间， C 写了一个分布式版本控制系统，1300 行
 * pull：fetch + merge </br>
 
 </br>
-### 四. Git 命令讲解
+## 四. Git 命令讲解
 
-#### 1.init clone 
+### 1.init clone 
 
-```objc
+```
 //初始化 git
 git init 	
 //从服务器 clone repo，
 git clone 
 ```
 	
-#### 2.配置 Git
+### 2.配置 Git
 
-```objc
+```
 //查看配置
 git config --global --list
 //编辑配置
@@ -136,25 +138,30 @@ git config --global user.email johndoe@example.com
 git config --global core.editor emacs			
 ```
 
-#### 3.add, stage
+### 3.add, stage
 
 从`工作区`选取一些代码快照，加入到`暂存区`，即将要`commit`的内容
 
-```objc
+```
 //将 <path> 放到 暂存区
 git add <path>
 //将 改动的跟踪文件 放到暂存区，但是不包括 新增的 
 git add -u stages 
 //将 所有 放到暂存区
 git add . 
+
+//git add . 之后，想要移回工作区
+git reset
+//git add . 之后，如果又在工作区做了一些更改，但此时想要放弃工作区更改
+git checkout .
 ```
 
 * 提问：为什么会有`暂存区`这个概念？
 * 快照？
 
-#### 4.暂存 stash
+### 4.暂存 stash
 
-```objc
+```
 //暂存当前工作区的变动
 git stash
 //暂存当前工作区的变动，并命名为<name>
@@ -175,7 +182,7 @@ git stash drop "name"
 
 **高级用法**
 
-```objc
+```
 //操作片段
 git add -p
 
@@ -189,16 +196,16 @@ e:	手动编辑选择是否暂存
 s:	切片
 ```
 
-```objc
+```
 git add -i
 
 ```
 
-#### 5.commit
+### 5.commit
 
 将`暂存区`的代码快照`提交`到`本地仓库`
 
-```objc
+```
 git commit
 //直接将 工作区 的所有文件提交到`本地仓库`
 git commit -a
@@ -208,7 +215,7 @@ git commit -m "log"
 
 **高级用法**
 
-```objc
+```
 //纠正最后历史
 git commit --amend
 //将 add 新的快照，追加最后到一次提交，并修改log
@@ -216,11 +223,11 @@ git commit --amend
 
 **注意：**这样会更改历史
 
-#### 6.remote
+### 6.remote
 
 远端，即远程服务器
 
-```objc
+```
 git remote
 
 //添加远程主机。
@@ -233,15 +240,15 @@ git remote rm <主机名>
 git remote rename <原主机名> <新主机名>
 ```
 
-#### 7.push
+### 7.push
 
 将本地的分支信息推向远端
 
-```objc
+```
 git push <主机名> <本地分支名>:<远程分支名>
 ```
 
-```objc
+```
 //将本地的主干推到远程主机，并建立追踪关系
 git push -u origin master:master
 
@@ -253,118 +260,126 @@ git push -f
 
 ```
 
-#### 8.pull
+### 8.pull
 
 pull = fetch + merge
 pull --rebase = fetch + rebase
 
 merge 优先尝试 fast-forward 模式
 
-```objc
+```
 git pull <远程主机名> <远程分支名>:<本地分支名>
 git pull --rebase <远程主机名> <远程分支名>:<本地分支名> 
 ```
 
-#### 9.fetch
+### 9.fetch
 
 将远程仓库新的提交的拉取到本地仓库
 
-```objc
+```
 git fetch
 git fetch origin master	
 ```
 
-#### 10.合并 merge 演合 rebase
+### 10.合并 merge 演合 rebase
 
 [LearnGit](http://pcottle.github.io/learnGitBranching/?NODEMO)
 
 把一个分支中的修改整合到另一个分支的办法有两种：`merge` 和 `rebase`
 
-##### a.合并 merge
+#### a.合并 merge
 
 把指定分支 branchX 合并到当前分支，如果不进行 fast-forward 模式，就会产生新的提交点。</br>
 若有冲突发生时，新的提交点为解决冲突记录。
 
-```objc
+```
 git merge origin branchX
 ```
 
-合并前</br>
-![合并前](http://git.oschina.net/progit/figures/18333fig0327-tn.png)
+合并前
 
-合并后</br>
-![合并后](http://git.oschina.net/progit/figures/18333fig0328-tn.png)
+<p style="text-align: center"><img src="http://git.oschina.net/progit/figures/18333fig0327-tn.png" width = "350"/>
+</p>
+
+合并后
+
+<p style="text-align: center"><img src="http://git.oschina.net/progit/figures/18333fig0328-tn.png" width = "350"/>
+</p>
 
 **fast-forward 模式**
 
-![fast-foward](http://nvie.com/img/merge-without-ff@2x.png)
+<p style="text-align: center"><img src="http://nvie.com/img/merge-without-ff@2x.png" width = "500"/>
+</p>
 
-##### b.演合 rebase
+#### b.演合 rebase
 
 将当前分支和 branchX 产生分歧的 commit 点，重新在 branchX 演一遍。
 
-```objc
+```
 git rebase branchX
 ```
 
-演合之前</br>
-![演合之前](http://git.oschina.net/progit/figures/18333fig0327-tn.png)
+演合之前
+
+<p style="text-align: center"><img src="http://git.oschina.net/progit/figures/18333fig0327-tn.png" width = "280"/>
+</p>
 
 演合之后</br>
-![演合之后](http://git.oschina.net/progit/figures/18333fig0329-tn.png)
 
-注意：永远不要对已经推送到远程仓库的分支进行演合，否则再次推送时会产生冲突。永远不要改变历史。
+<p style="text-align: center"><img src="http://git.oschina.net/progit/figures/18333fig0329-tn.png" width = "350"/>
+</p>
+
+注意：尽量不要对已经推送到远程仓库的分支进行演合，否则再次推送时会产生冲突。永远不要改变历史。
 
 神奇的演合：
 
-```objc
+```
 git rebase --onto branchA branchB branchC
 ```
 
-##### c.merge 和 rebase 的取舍
+#### c.merge 和 rebase 的取舍
 
 rebase: 保证了提交点的干净有序。</br>
 merge: 更加详细了记录了开发路线。
 
-#### 10.后悔药 reset revert reflog
+### 10.后悔药 reset revert reflog
 
-##### 1.reset
+#### 1.reset
 
 类似 SVN 的revert，将当前分支提交重置回某个提交点。
 
-```objc
+```
 git reset [commit]
 //--soft --mixed --hard
 ```
 
 注意：不要对已经在远程服务器的 commit 进行 reset
 
-##### 2.revert
+#### 2.revert
 
 对某一次提交做一次反向操作，并且提交创建一个新提交
 
-```objc
+```
 git revert [commit]
 ```
 
-##### 3.reflog
+#### 3.reflog
 
 列出 HEAD 经历过的记录，神器~
 
-```objc
+```
 git reflog
 ```
 
-</br>
-### 五. Git 开发模型--GitFlow
+## 五. Git 开发模型--GitFlow
 
-#### 1.branch
+### 1.branch
 
 Git 分支不同于 SVN，不是对文件拷贝的副本，而是快照，使用起来非常轻量级。这使得开发中对分支的 new，merge，delete 变得非常廉价，更好的支持并发型开发。开分支，就是新建一个指针而已。
 
 分支的查看
 
-```objc
+```
 //列出所有本地分支
 git branch
 
@@ -377,7 +392,7 @@ git branch -a
 
 分支的新建
 
-```objc
+```
 //新建分支 branchName
 git branch [branchName]
 
@@ -390,7 +405,7 @@ git branch [branchName] [commit]
 
 分支的切换 checkout 功能
 
-```objc
+```
 //切换分支
 git checkout [branchName]
 //移动 head
@@ -399,38 +414,46 @@ git checkout [commit]
 git checkout <fileName>
 ```
 
-#### 2.GitFlow
+### 2.GitFlow
 
-![GitFlow](http://nvie.com/img/git-model@2x.png)
+<p style="text-align: center"><img src="http://nvie.com/img/git-model@2x.png" width = "600"/>
+</p>
 
-</br>
-### 六. 辅助利器
+## 六. 辅助利器
 
-#### 1.[Zsh](https://github.com/robbyrussell/oh-my-zsh)
+### 1.[Zsh](https://github.com/robbyrussell/oh-my-zsh)
 
-#### 2.[GitDiff](https://github.com/johnno1962/GitDiff)
+### 2.[GitDiff](https://github.com/johnno1962/GitDiff)
 
-</br>
-### 七. 扩展
+## 七. 扩展
 
-#### 1.git config
+### 1.git config
 
-#### 2.git rebase -i
+### 2.git rebase -i
 
-#### 3.cherry-pick
+修改历史的一个方法，提供了重写 commit，合并 commit，更改 commit 顺序等功能。之后有时间补上这一部分。
 
+### 3.cherry-pick
 
 将一个提交点重新应用到当前分支，此时是一个新的提交号
 
-```objc
+```
 git cherry-pick [commit]
 ```
 
 ~~注意：永远不要 cherry-pick 已推送到远端的 commit，否则再次推送时会产生冲突。~~
 这句话是我错误的认知，删去。cherry-pick 的提交点再次合并回去之后，不会引起冲突。
 
-#### 4..gitignore
+### 4..gitignore
 
-#### 5.alias
+这个可以参考这个**[开源项目](https://github.com/github/gitignore)**
 
-#### 6.ssh
+### 5.alias
+
+alias 我用的不多，因为不想太依赖这个东西，用的最频繁的就下面一个：
+
+```bash
+lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+```
+
+### 6.ssh
